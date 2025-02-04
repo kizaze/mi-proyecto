@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Volumen de una Esfera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 500px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #0077cc;
+            text-align: center;
+        }
+        form {
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Volumen de una Esfera</h1>
+    <form onsubmit="calcularVolumen(event)">
+        <label for="radio">Radio de la esfera (en cm):</label>
+        <input type="number" id="radio" name="radio" min="0" step="0.01" required>
+        <button type="submit">Calcular Volumen</button>
+        <p class="result" id="resultado"></p>
+    </form>
+
+    <script>
+        function calcularVolumen(event) {
+            event.preventDefault(); // Evita que la página se recargue al enviar el formulario
+            const radio = parseFloat(document.getElementById('radio').value);
+            if (radio > 0) {
+                const volumen = (4 / 3) * Math.PI * Math.pow(radio, 3);
+                document.getElementById('resultado').textContent = `El volumen de la esfera es: ${volumen.toFixed(2)} cm³.`;
+            } else {
+                document.getElementById('resultado').textContent = 'Por favor, ingresa un radio válido.';
+            }
+        }
+    </script>
+</body>
+</html>

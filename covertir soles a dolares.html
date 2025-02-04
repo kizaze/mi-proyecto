@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Soles a Dólares</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 500px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #0077cc;
+            text-align: center;
+        }
+        form {
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conversor de Soles a Dólares</h1>
+    <form onsubmit="convertir(event)">
+        <label for="soles">Monto en soles (PEN):</label>
+        <input type="number" id="soles" name="soles" min="0" step="0.01" required>
+        <label for="tasa">Tasa de cambio (1 USD = x PEN):</label>
+        <input type="number" id="tasa" name="tasa" min="0" step="0.01" value="3.80" required>
+        <button type="submit">Convertir a USD</button>
+        <p class="result" id="resultado"></p>
+    </form>
+
+    <script>
+        function convertir(event) {
+            event.preventDefault(); // Evita que la página se recargue al enviar el formulario
+            const soles = parseFloat(document.getElementById('soles').value);
+            const tasa = parseFloat(document.getElementById('tasa').value);
+
+            if (soles > 0 && tasa > 0) {
+                const dolares = soles / tasa;
+                document.getElementById('resultado').textContent = 
+                    `El monto equivalente es: $${dolares.toFixed(2)} USD.`;
+            } else {
+                document.getElementById('resultado').textContent = 
+                    'Por favor, ingresa valores válidos para los soles y la tasa de cambio.';
+            }
+        }
+    </script>
+</body>
+</html>
